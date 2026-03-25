@@ -5,7 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 
 # Danh sách dữ liệu kiểm thử dựa trên file của bạn
-test_data = [
+testdata = [
     {"id": "DN001", "user": "1303", "pass": "Guru99", "expected": "Vào trang chủ"},
     {"id": "DN002", "user": "", "pass": "", "expected": "User-ID must not be blank, Password must not be blank"},
     {"id": "DN003", "user": "1303", "pass": "", "expected": "Password must not be blank"},
@@ -14,13 +14,13 @@ test_data = [
     {"id": "DN006", "user": "mng", "pass": "Guru99", "expected": "User or Password is not valid"},
 ]
 
-def run_test():
+def runtest():
     # Khởi tạo trình duyệt (Chrome)
     driver = webdriver.Chrome()
     
     
-    for data in test_data:
-        print(f"--- Đang thực hiện Testcase: {data['id']} ---")
+    for data in testdata:
+        print(f" Đang thực hiện Testcase: {data['id']}")
         driver.get("https://demo.guru99.com/V4/")
         
         # Tìm các element
@@ -53,7 +53,7 @@ def run_test():
                 errors = [label.text for label in labels if label.text != ""]
                 print(f"Thực tế: Lỗi form - {', '.join(errors)}")
 
-        print("-" * 40)
+        
         
         time.sleep(7) # Nghỉ 1 chút giữa các testcase
 
@@ -61,4 +61,4 @@ def run_test():
     driver.quit()
 
 if __name__ == "__main__":
-    run_test()
+    runtest()
